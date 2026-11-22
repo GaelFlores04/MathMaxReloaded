@@ -1,0 +1,12 @@
+PASS RF02 enemigo inicial e inicializacion idempotente; RDC02 escala y paso
+SAMPLE step=0 bodies=12 segments=2 points=100 working_set=7979008
+SAMPLE step=100 bodies=39 segments=11 points=550 working_set=8515584
+SAMPLE step=200 bodies=37 segments=11 points=550 working_set=8515584
+SAMPLE step=300 bodies=45 segments=11 points=550 working_set=8515584
+SAMPLE step=400 bodies=44 segments=11 points=550 working_set=8515584
+SAMPLE step=500 bodies=40 segments=11 points=550 working_set=8515584
+SAMPLE step=600 bodies=42 segments=11 points=550 working_set=8515584
+SAMPLE step=700 bodies=39 segments=11 points=550 working_set=8515584
+SAMPLE step=800 bodies=32 segments=11 points=550 working_set=8515584
+SAMPLE step=900 bodies=37 segments=11 points=550 working_set=8523776
+PASS RE01 1000 segmentos recorridos; max_bodies=51 max_points=550 memory_warm=8515584 memory_end=8523776 memory_peak=8523776

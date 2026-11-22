@@ -1,0 +1,262 @@
+INFO: Initializing raylib 5.5
+INFO: Platform backend: DESKTOP (GLFW)
+INFO: Supported raylib modules:
+INFO:     > rcore:..... loaded (mandatory)
+INFO:     > rlgl:...... loaded (mandatory)
+INFO:     > rshapes:... loaded (optional)
+INFO:     > rtextures:. loaded (optional)
+INFO:     > rtext:..... loaded (optional)
+INFO:     > rmodels:... loaded (optional)
+INFO:     > raudio:.... loaded (optional)
+INFO: DISPLAY: Device initialized successfully
+INFO:     > Display size: 1920 x 1080
+INFO:     > Screen size:  1280 x 720
+INFO:     > Render size:  1280 x 720
+INFO:     > Viewport offsets: 0, 0
+INFO: GLAD: OpenGL extensions loaded successfully
+INFO: GL: Supported extensions count: 245
+INFO: GL: OpenGL device information:
+INFO:     > Vendor:   Intel
+INFO:     > Renderer: Intel(R) Iris(R) Xe Graphics
+INFO:     > Version:  3.3.0 - Build 30.0.101.1692
+INFO:     > GLSL:     3.30 - Build 30.0.101.1692
+INFO: GL: VAO extension detected, VAO functions loaded successfully
+INFO: GL: NPOT textures extension detected, full NPOT textures supported
+INFO: GL: DXT compressed textures supported
+INFO: GL: ETC2/EAC compressed textures supported
+INFO: PLATFORM: DESKTOP (GLFW - Win32): Initialized successfully
+INFO: TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 1] Default texture loaded successfully
+INFO: SHADER: [ID 1] Vertex shader compiled successfully
+INFO: SHADER: [ID 2] Fragment shader compiled successfully
+INFO: SHADER: [ID 3] Program shader loaded successfully
+INFO: SHADER: [ID 3] Default shader loaded successfully
+INFO: RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+INFO: RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+INFO: RLGL: Default OpenGL state initialized successfully
+INFO: TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+INFO: FONT: Default font loaded successfully (224 glyphs)
+INFO: SYSTEM: Working Directory: VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado
+INFO: AUDIO: Device initialized successfully
+INFO:     > Backend:       miniaudio | WASAPI
+INFO:     > Format:        32-bit IEEE Floating Point -> 32-bit IEEE Floating Point
+INFO:     > Channels:      2 -> 2
+INFO:     > Sample rate:   48000 -> 48000
+INFO:     > Periods size:  1440
+INFO: TIMER: Target time per frame: 1.000 milliseconds
+INFO: STREAM: Initialized successfully (44100 Hz, 16 bit, Stereo)
+INFO: FILEIO: [assets/audio/menu_theme.ogg] Music file loaded successfully
+INFO:     > Sample rate:   44100 Hz
+INFO:     > Sample size:   16 bits
+INFO:     > Channels:      2 (Stereo)
+INFO:     > Total frames:  7621539
+INFO: STREAM: Initialized successfully (48000 Hz, 16 bit, Stereo)
+INFO: FILEIO: [assets/audio/gameplay_theme.ogg] Music file loaded successfully
+INFO:     > Sample rate:   48000 Hz
+INFO:     > Sample size:   16 bits
+INFO:     > Channels:      2 (Stereo)
+INFO:     > Total frames:  12559104
+INFO: FILEIO: [assets/audio/car_loop.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/missile.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/shield.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/parry.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/car_explode.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/low_fuel.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (96000 Hz, 16 bit, 1 channels)
+INFO: FILEIO: [assets/audio/damage.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/repair.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/wrong.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 1 channels)
+INFO: FILEIO: [assets/audio/heli_loop.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/heli_explode.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/missile_explode.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/mine.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/pickup.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/ui_move.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/ui_select.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+TAMANO_DE_ARCHIVO_INVALIDO
+INFO: FILEIO: [assets/car/chasis_truck.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1030x354 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 3] Texture loaded successfully (1030x354 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/car/wheel_truck.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (176x170 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 4] Texture loaded successfully (176x170 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/helifull.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (3200x2400 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 5] Texture loaded successfully (3200x2400 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/missile.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (281x79 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 6] Texture loaded successfully (281x79 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/fuel.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1024x1024 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 7] Texture loaded successfully (1024x1024 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/mine.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (16x4 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 8] Texture loaded successfully (16x4 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/ammo.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (719x860 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 9] Texture loaded successfully (719x860 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/menuB.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1024x904 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 10] Texture loaded successfully (1024x904 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/menuB.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1024x904 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 11] Texture loaded successfully (1024x904 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/kit.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (980x980 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 12] Texture loaded successfully (980x980 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/effects/explosionC.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (3024x504 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 13] Texture loaded successfully (3024x504 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/effects/explosionH.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1645x1920 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 14] Texture loaded successfully (1645x1920 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/effects/explosionM.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1000x720 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 15] Texture loaded successfully (1000x720 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/effects/explosionMi.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (9600x3840 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 16] Texture loaded successfully (9600x3840 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/playoff.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (242x93 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 17] Texture loaded successfully (242x93 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/playon.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (242x93 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 18] Texture loaded successfully (242x93 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/statsof.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (248x94 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 19] Texture loaded successfully (248x94 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/statson.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (247x94 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 20] Texture loaded successfully (247x94 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/exitoff.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (243x94 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 21] Texture loaded successfully (243x94 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/exiton.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (245x95 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 22] Texture loaded successfully (245x95 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/LogoR.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1024x747 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 23] Texture loaded successfully (1024x747 | R8G8B8A8 | 1 mipmaps)
+PASS CP01-02 frame=0 DOWN/S seleccionan Estadisticas
+PASS CP17 frame=0 archivo corrupto produce mensaje visible de carga
+PASS CP01-02 frame=1 UP/W seleccionan Jugar
+PASS CP01-02 frame=2 DOWN/S seleccionan Estadisticas
+PASS CP01-02 frame=3 UP/W seleccionan Jugar
+PASS CP01 frame=6 Enter abre pantalla Estadisticas
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_6.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_6.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_6.png] Screenshot taken successfully
+PASS CP01-02 frame=8 DOWN/S seleccionan Estadisticas
+PASS CP01 frame=8 ESC regresa de Estadisticas al menu
+PASS CP01-02 frame=9 UP/W seleccionan Jugar
+PASS CP03 frame=11 inicializacion 5 vidas / 100 combustible / 0 municion
+PASS CP03 frame=11 vehiculo y terreno creados en mundo Box2D
+PASS RF02 frame=11 enemigos presentes al inicio segun requisito RF02
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_12.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_12.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_12.png] Screenshot taken successfully
+MEASURE D x0=0.014586 x1=111.072342 vx=5.246989
+PASS CP04 frame=139 D durante 2s desplaza hacia delante y motor positivo
+MEASURE A x0=111.072342 x1=414.791870 vx=3.936491
+PASS CP04 frame=259 A durante 2s reduce velocidad o permite reversa con motor negativo
+PASS CP06 frame=271 Espacio crea un misil y consume 1 a 0
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_272.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_272.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_272.png] Screenshot taken successfully
+PASS CP07 frame=281 Espacio sin municion no crea misil
+PASS CP08 frame=290 Shift activa escudo 3s y parry 0.40s
+PASS CP08 frame=291 Shift repetido no reinicia escudo
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_300.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_300.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_300.png] Screenshot taken successfully
+PASS CP08 frame=313 parry activo antes de 0.40s
+PASS CP08 frame=315 parry termina tras 0.40s con tolerancia de un paso 1/60s
+PASS CP08 frame=471 Shift rechazado durante enfriamiento
+PASS CP08 frame=600 Shift vuelve a activar tras enfriamiento
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_650.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_650.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_650.png] Screenshot taken successfully
+PASS CP13 frame=800 181 pasos de pausa mantienen posicion, velocidad, combustible, quiz y escudo
+PASS CP13 frame=802 ESC reanuda simulacion y temporizadores
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_809.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_809.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_809.png] Screenshot taken successfully
+PASS CP10 frame=810 clic izquierdo en opcion correcta recupera 4 a 5 y cierra reto
+PASS CP10 frame=811 sin recompensa duplicada
+PASS CP11 frame=821 clic izquierdo incorrecto no recupera vidas
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_822.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_822.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_822.png] Screenshot taken successfully
+PASS CP12 frame=1428 reto sigue activo antes de 10s
+PASS CP12 frame=1432 reto expira alrededor de 10s sin recuperar vidas
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1432.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1432.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1432.png] Screenshot taken successfully
+PASS CP09 frame=1450 colision recoge combustible y municion sin superar 100 y 6
+PASS CP09 frame=1451 colision recoge combustible y municion sin superar 100 y 6
+PASS CP09 frame=1452 colision recoge combustible y municion sin superar 100 y 6
+PASS CP09-10 frame=1454 colision con reparacion abre reto
+MEASURE mine lives=4 velocity_y=-56.250000
+PASS CP09 frame=1460 mina aplica impulso ascendente por colision real
+PASS CP05 frame=1470 combustible 0 con D no activa motores
+PASS CP05 frame=1470 combustible 0 con A no activa motores
+PASS CP13 frame=1474 M desde pausa regresa al menu tras solicitar guardado
+PASS CP03 frame=1476 inicializacion 5 vidas / 100 combustible / 0 municion
+PASS CP03 frame=1476 vehiculo y terreno creados en mundo Box2D
+PASS RF02 frame=1476 enemigos presentes al inicio segun requisito RF02
+PASS CP14 frame=1480 perdida de ultima vida activa fin de partida
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1490.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1490.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1490.png] Screenshot taken successfully
+PASS CP14 frame=1501 M regresa de GAME OVER al menu
+PASS CP14-15 frame=1501 acumulacion unica 1000m / 2 bajas / 1 parry
+PASS CP17 frame=1501 mensaje visible de guardado fallido
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1501.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1501.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1501.png] Screenshot taken successfully
+PASS CP15 frame=1504 pantalla muestra acumulados de sesion
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1504.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1504.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Cierre_requisitos\pruebas\proyecto_instrumentado/errors_frame_1504.png] Screenshot taken successfully
+PASS CP01 frame=1506 UP permite seleccionar Salir
+INFO: TEXTURE: [ID 3] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 4] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 5] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 6] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 7] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 8] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 9] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 12] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 11] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 10] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 13] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 14] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 15] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 16] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 17] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 18] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 19] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 20] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 21] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 22] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 23] Unloaded texture data from VRAM (GPU)
+INFO: STREAM: Unloaded audio stream data from RAM
+INFO: STREAM: Unloaded audio stream data from RAM
+INFO: AUDIO: Device closed successfully
+PASS EXIT frame=1507 salida normal
+SUMMARY checks=47 failures=0

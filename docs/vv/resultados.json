@@ -1,0 +1,46 @@
+[
+  {
+    "log": "compilacion_sistema.txt",
+    "exit": 0
+  },
+  {
+    "log": "sistema_normal.txt",
+    "exit": 0
+  },
+  {
+    "log": "persistencia_nuevo_proceso.txt",
+    "exit": 0
+  },
+  {
+    "log": "sistema_errores.txt",
+    "exit": 0
+  },
+  {
+    "log": "compilacion_restantes.txt",
+    "exit": 0
+  },
+  {
+    "log": "terreno_memoria_unidades.txt",
+    "exit": 0
+  },
+  {
+    "log": "faltante_chasis_truck.txt",
+    "exit": 1
+  },
+  {
+    "log": "faltante_menu_theme.txt",
+    "exit": 1
+  },
+  {
+    "log": "directorio_incorrecto.txt",
+    "exit": 1
+  },
+  {
+    "log": "compilacion_perfil.txt",
+    "exit": 0
+  },
+  {
+    "log": "tiempo_cuadro.txt",
+    "exit": 0
+  }
+]

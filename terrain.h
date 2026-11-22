@@ -1,12 +1,23 @@
+/*
+ * Proyecto: MATHMAX - RELOADED
+ * Archivo: terrain.h
+ * Proposito: generar y retirar terreno y gestionar objetos recolectables.
+ * Requisitos: RF06, RE01, RDC02.
+ * Base POO: Gael Flores Canedo / Israel Gomez Ahumada.
+ * Adaptacion V&V: Gael Flores / Jorge Roel Vasquez; asistencia de Codex.
+ * Revision: 2026-11-09
+ */
 #pragma once
+#include <math.h>
+#include <vector>
+
 #include <box2d/box2d.h>
 #include <raylib.h>
-#include <vector>
-#include <deque>
-#include <math.h>
+
+#include "audios.h"
 #include "carb.h"
 #include "effects.h"
-#include "audios.h"
+#include <deque>
 
 // --- CLASE ITEM REPARACION ---
 class RepairItem
@@ -44,7 +55,9 @@ public:
     void Draw(Texture2D tex)
     {
         if (collected)
+        {
             return;
+        }
 
         if (tex.id > 0)
         {
@@ -100,15 +113,17 @@ public:
     void Draw(Texture2D tex)
     {
         if (collected)
+        {
             return;
+        }
         // Usar textura si existe, si no, cuadro rojo
         if (tex.id > 0)
         {
             // Aumentamos tamaño. Antes era {x, y, 30, 40}
             float w = 45.0f; // Nuevo ancho
             float h = 60.0f; // Nuevo alto
-            DrawTexturePro(tex, {0, 0, (float)tex.width, (float)tex.height},
-                           {x, y, w, h}, {w / 2.0f, h / 2.0f}, 0.0f, WHITE);
+            DrawTexturePro(tex, {0, 0, (float)tex.width, (float)tex.height}, {x, y, w, h},
+                           {w / 2.0f, h / 2.0f}, 0.0f, WHITE);
         }
         else
         {
@@ -154,14 +169,16 @@ public:
     void Draw(Texture2D tex)
     {
         if (exploded)
+        {
             return;
+        }
         if (tex.id > 0)
         {
             // En Mine::Draw(Texture2D tex)
             float w = 30.0f; // Antes 30
             float h = 15.0f; // Antes 15
-            DrawTexturePro(tex, {0, 0, (float)tex.width, (float)tex.height},
-                           {x, y, w, h}, {w / 2.0f, h / 2.0f}, 0.0f, WHITE);
+            DrawTexturePro(tex, {0, 0, (float)tex.width, (float)tex.height}, {x, y, w, h},
+                           {w / 2.0f, h / 2.0f}, 0.0f, WHITE);
         }
         else
         {
@@ -206,7 +223,9 @@ public:
     void Draw(Texture2D tex)
     {
         if (collected)
+        {
             return;
+        }
 
         if (tex.id > 0)
         {
@@ -218,11 +237,7 @@ public:
             // 2. POSICIÓN
             // 'y - 25.0f' sube el centro del objeto para que la base toque el suelo
             // (La mitad de 50 es 25)
-            Rectangle dest = {
-                x,
-                y - 25.0f,
-                size,
-                size};
+            Rectangle dest = {x, y - 25.0f, size, size};
 
             Vector2 origin = {size / 2.0f, size / 2.0f};
 
@@ -260,10 +275,10 @@ private:
     };
     std::deque<GroundSegment> segments;
     std::vector<FuelCan> cans;
-    std::vector<Mine> mines;               // Lista de minas
-    std::vector<MissileItem> missileItems; // <--- NUEVA LISTA
-    std::vector<b2BodyId> backWalls;       // Lista de muros
-    std::vector<RepairItem> repairItems;   // Nueva lista
+    std::vector<Mine> mines; // Lista de minas
+    std::vector<MissileItem> missileItems;
+    std::vector<b2BodyId> backWalls;     // Lista de muros
+    std::vector<RepairItem> repairItems; // Nueva lista
 
     float lastGenX;
     float lastGenY;
@@ -271,12 +286,14 @@ private:
 public:
     std::vector<Vector2> visualPoints;
 
-    void SetAudio(GameAudio *ptr) { audio = ptr; }
+    void SetAudio(GameAudio *ptr)
+    {
+        audio = ptr;
+    }
 
     Terrain(b2WorldId world, float physicsScale)
-        : worldId(world), scale(physicsScale),
-          lastGenX(-500.0f), lastGenY(500.0f),
-          spawnWallCreated(false) // Inicializar
+        : worldId(world), scale(physicsScale), spawnWallCreated(false), lastGenX(-500.0f),
+          lastGenY(500.0f) // Inicializar
     {
         GenerateSegment(true);
 
@@ -286,22 +303,31 @@ public:
     float GetHeightAt(float xCheck)
     {
         if (visualPoints.empty())
+        {
             return 10000.0f; // Valor seguro si no hay terreno
+        }
 
         for (size_t i = 0; i < visualPoints.size() - 1; i++)
         {
             if (xCheck >= visualPoints[i].x && xCheck < visualPoints[i + 1].x)
             {
                 // InterpolaciÃ³n lineal simple
-                float t = (xCheck - visualPoints[i].x) / (visualPoints[i + 1].x - visualPoints[i].x);
+                float t =
+                    (xCheck - visualPoints[i].x) / (visualPoints[i + 1].x - visualPoints[i].x);
                 return visualPoints[i].y + t * (visualPoints[i + 1].y - visualPoints[i].y);
             }
         }
         return 10000.0f; // Fuera de rango
     }
 
-    void SetExplosionManager(ExplosionManager *mgr) { explosionMgr = mgr; }
-    void SetExplosionTexture(Texture2D mineExp) { explosionMineTex = mineExp; }
+    void SetExplosionManager(ExplosionManager *mgr)
+    {
+        explosionMgr = mgr;
+    }
+    void SetExplosionTexture(Texture2D mineExp)
+    {
+        explosionMineTex = mineExp;
+    }
 
     void Update(Vector2 playerPos, Car &car)
     {
@@ -384,10 +410,14 @@ public:
                 it->exploded = true;
                 car.ApplyMineExplosion(); // IMPULSO AL AUTO
                 if (explosionMgr)
+                {
                     explosionMgr->AddMineExplosion(itemPos, explosionMineTex);
+                }
 
                 if (audio)
-                    PlaySound(audio->mineExplosion); // <--- AGREGAR
+                {
+                    PlaySound(audio->mineExplosion);
+                }
                 it->Destroy();
                 it = mines.erase(it);
             }
@@ -429,11 +459,11 @@ public:
         {
             Vector2 itemPos = {it->x, it->y};
             // Solo recoger si NO hay quiz activo
-            if (!it->collected && CheckCollisionCircles(playerPos, 60, itemPos, 20) && !car.IsQuizActive())
+            if (!it->collected && CheckCollisionCircles(playerPos, 60, itemPos, 20) &&
+                !car.IsQuizActive())
             {
                 it->collected = true;
                 car.ActivateQuiz(playerPos.x / scale);
-
 
                 it->Destroy();
                 it = repairItems.erase(it);
@@ -454,10 +484,9 @@ public:
     void Draw(Texture2D fuelTex, Texture2D mineTex, Texture2D missileTex, Texture2D repairTex)
     {
         if (visualPoints.size() < 2)
+        {
             return;
-
-        Color dirtColor = {60, 40, 20, 255};
-        Color grassColor = {30, 180, 30, 255};
+        }
 
         Color asphalt = {60, 60, 60, 255}; // Oscuro
         Color debris = {80, 80, 80, 255};  // Gris oscuro
@@ -477,10 +506,6 @@ public:
         for (size_t i = 0; i < visualPoints.size() - 1; i++)
         {
             DrawLineEx(visualPoints[i], visualPoints[i + 1], 8.0f, asphalt);
-
-            float stakeW = 10.0f; // Ancho visual
-            float stakeH = 50.0f; // Alto visual (stakeDepth)
-            float manualOff = 10.0f;
 
             Vector2 pos = visualPoints[i];
 
@@ -546,23 +571,33 @@ public:
 
         // Items - AQUÍ ES DONDE PASAMOS LAS TEXTURAS
         for (auto &can : cans)
+        {
             can.Draw(fuelTex);
+        }
 
         for (auto &mine : mines)
+        {
             mine.Draw(mineTex);
+        }
 
         for (auto &m : missileItems)
+        {
             m.Draw(missileTex);
+        }
 
         for (auto &item : repairItems)
+        {
             item.Draw(repairTex);
+        }
     }
 
 private:
     void CreateSpawnWall()
     {
         if (spawnWallCreated)
+        {
             return;
+        }
 
         // Configuración de la Base
         float baseWidth = 600.0f;  // Ahora es 600px de largo (hacia atrás)
@@ -572,12 +607,11 @@ private:
         // Así que el centro debe estar desplazado hacia la izquierda
         float frontFaceX = -80.0f;
         float centerX = frontFaceX - (baseWidth / 2.0f);
-        float centerY = 500.0f - (baseHeight / 2.0f) + 100.0f; // Ajuste para que pise el suelo (y = 500)
 
         b2BodyDef wallDef = b2DefaultBodyDef();
         wallDef.position = {centerX / scale, 500.0f / scale - (baseHeight / 2.0f) / scale};
-        // Nota: En Box2D el origen suele ser el centro, ajustamos para que la base se asiente en el suelo
-        // Simplifiquemos: Ponemos el centro físico donde calculamos
+        // Nota: En Box2D el origen suele ser el centro, ajustamos para que la base se asiente en el
+        // suelo Simplifiquemos: Ponemos el centro físico donde calculamos
         wallDef.position = {centerX / scale, 500.0f / scale - (baseHeight / 2.0f) / scale};
 
         // Mejor ajuste manual de altura para que quede alineado al suelo (y=500 es el piso)
@@ -589,7 +623,6 @@ private:
         spawnWallId = b2CreateBody(worldId, &wallDef);
 
         b2ShapeDef wallShape = b2DefaultShapeDef();
-       
 
         // Crear la caja gigante
         b2Polygon wallBox = b2MakeBox((baseWidth / 2.0f) / scale, (baseHeight / 2.0f) / scale);
@@ -676,27 +709,24 @@ private:
 
             b2Vec2 joinPoint = chainPoints[0];
 
-            float stakeWidth = 10.0f / scale;
             float stakeDepth = 70.0f / scale;
+            float stakeWidth = 10.0f / scale;
+            float manualOffset = -75.0f / scale;
 
             // --- AJUSTE MANUAL DE ALTURA ---
             // Cuanto mayor sea este número, MÁS ABAJO estará la estaca.
             // 10.0f significa 10 pixeles más abajo del punto de unión.
-            float manualOffset = -75.0f / scale;
 
-            b2Vec2 stakeCenter = {
-                joinPoint.x,
-                // Posición Y = (Punto Unión) - (Mitad de la altura de la caja) - (Tu Desplazamiento)
-                // Recuerda que en simulación Y crece hacia arriba, así que RESTAR es BAJAR
-                joinPoint.y - (stakeDepth / 2.0f) - manualOffset};
+            b2Vec2 stakeCenter = {joinPoint.x,
+                                  // Posición Y = (Punto Unión) - (Mitad de la altura de la caja) -
+                                  // (Tu Desplazamiento) Recuerda que en simulación Y crece hacia
+                                  // arriba, así que RESTAR es BAJAR
+                                  joinPoint.y - (stakeDepth / 2.0f) - manualOffset};
 
             b2Rot zeroRot = {1.0f, 0.0f};
 
-            b2Polygon stakePoly = b2MakeOffsetBox(
-                stakeWidth / 2.0f,
-                stakeDepth / 2.0f,
-                stakeCenter,
-                zeroRot);
+            b2Polygon stakePoly =
+                b2MakeOffsetBox(stakeWidth / 2.0f, stakeDepth / 2.0f, stakeCenter, zeroRot);
 
             b2CreatePolygonShape(bodyId, &sealShape, &stakePoly);
         }
@@ -705,5 +735,4 @@ private:
 
         segments.push_back({bodyId, lastGenX});
     }
-
-}; // <--- ESTA ES LA LLAVE QUE FALTABA
+};

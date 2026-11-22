@@ -1,0 +1,24 @@
+BasedOnStyle: Microsoft
+Language: Cpp
+Standard: c++17
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+BreakBeforeBraces: Allman
+InsertBraces: true
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+PointerAlignment: Right
+SortIncludes: CaseSensitive
+ReflowComments: true
+AccessModifierOffset: -4
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<(algorithm|array|cassert|cmath|cstdint|cstdio|cstring|filesystem|fstream|functional|iostream|limits|math.h|string|vector|utility|cstddef)>$'
+    Priority: 1
+  - Regex: '^[<"](box2d/|raylib\.h|raymath\.h)'
+    Priority: 2
+  - Regex: '.*'
+    Priority: 3

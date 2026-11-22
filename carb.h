@@ -1,12 +1,26 @@
+/*
+ * Proyecto: MATHMAX - RELOADED
+ * Archivo: carb.h
+ * Proposito: gestionar vehiculo, recursos, escudo y retos matematicos.
+ * Requisitos: RF03, RF04, RF05, RF06, RF07.
+ * Base POO: Gael Flores Canedo / Israel Gomez Ahumada.
+ * Adaptacion V&V: Gael Flores / Jorge Roel Vasquez; asistencia de Codex.
+ * Revision: 2026-11-09
+ */
 #pragma once
-#include <box2d/box2d.h>
-#include <raylib.h>
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
+#include <functional>
 #include <math.h>
 #include <vector>
-#include <functional>
-#include <cstdio>
-#include "effects.h"
+
+#include <box2d/box2d.h>
+#include <raylib.h>
+
 #include "audios.h"
+#include "effects.h"
+#include "verification.h"
 
 class Car
 {
@@ -31,7 +45,6 @@ private:
     bool isDead;
     float maxFuel;
 
-    // En la sección private de Car:
     int lives;
     int maxLives;
 
@@ -58,7 +71,7 @@ private:
     bool shieldActive;
     float shieldTimer;    // Cuánto tiempo le queda al escudo (max 3.0s)
     float shieldCooldown; // Tiempo para volver a usarlo (max 2.0s)
-    float parryWindow;    // Tiempo restante para hacer Parry (max 0.75s)
+    float parryWindow;    // Tiempo restante para hacer Parry (max 0.40s)
 
     ExplosionManager *explosionMgr = nullptr;
     Texture2D explosionCarTex;
@@ -71,15 +84,20 @@ public:
         int num1, num2;
         char operation; // '+', '-', '*', '/'
         int correctAnswer;
-        int options[3]; // Las 3 opciones
+        int options[3]{}; // Las 3 opciones
     };
 
-    MathQuestion currentQuestion;
+private:
+    MathQuestion currentQuestion{};
     bool isQuizActive;
     float quizTimer;
     Vector2 quizPosition;
 
-    void SetExplosionManager(ExplosionManager *mgr) { explosionMgr = mgr; }
+public:
+    void SetExplosionManager(ExplosionManager *mgr)
+    {
+        explosionMgr = mgr;
+    }
     void SetExplosionTextures(Texture2D carExp, Texture2D missileExp)
     {
         explosionCarTex = carExp;
@@ -107,7 +125,6 @@ public:
         lives = 5;
         maxLives = 5;
 
-        // Inicializar Invulnerabilidad <--- AGREGAR ESTO
         invulnerabilityTimer = 0.0f;
         isInvulnerable = false;
 
@@ -142,7 +159,8 @@ public:
         b2ShapeDef sensorDef = b2DefaultShapeDef();
         sensorDef.isSensor = true; // IMPORTANTE: Es un sensor, no colisiona
 
-        b2Polygon roofBox = b2MakeBox((width / 2.5f) / scale, 5.0f / scale); // Pequeño rectángulo arriba
+        b2Polygon roofBox =
+            b2MakeBox((width / 2.5f) / scale, 5.0f / scale); // Pequeño rectángulo arriba
         b2CreatePolygonShape(roofSensorId, &sensorDef, &roofBox);
 
         // Unir el sensor al chasis para que se mueva con él
@@ -204,24 +222,39 @@ public:
     // --- MÉTODOS PÚBLICOS ---
 
     // AUDIO
-    void SetAudio(GameAudio *audioPtr) { audio = audioPtr; }
+    void SetAudio(GameAudio *audioPtr)
+    {
+        audio = audioPtr;
+    }
 
     void AddFuel(float amount)
     {
-        if (isDead)
+        if (isDead || !std::isfinite(amount) || amount <= 0.0f)
+        {
             return;
-        fuel += amount;
+        }
+        fuel += std::min(amount, maxFuel - fuel);
         if (fuel > maxFuel)
+        {
             fuel = maxFuel;
+        }
     }
 
-    float GetFuel() { return fuel; }
-    bool IsDead() { return isDead; }
+    float GetFuel()
+    {
+        return fuel;
+    }
+    bool IsDead()
+    {
+        return isDead;
+    }
 
     Vector2 GetPosition()
     {
         if (isDead)
+        {
             return lastPos; // Devuelve la última posición segura (sin tocar Box2D)
+        }
 
         if (b2Body_IsValid(chassisId))
         {
@@ -246,19 +279,29 @@ public:
     // --- MÉTODOS DE MISILES ---
     void AddAmmo(int amount)
     {
-        ammo = std::min(ammo + amount, maxAmmo); // <--- Opción más elegante
+        if (amount > 0)
+        {
+            ammo += std::min(amount, maxAmmo - ammo);
+        }
     }
 
-    int GetAmmo() { return ammo; }
+    int GetAmmo()
+    {
+        return ammo;
+    }
 
     void Shoot()
     {
-        if (ammo <= 0 || ammo > maxAmmo) // <--- AGREGAR: || ammo > maxAmmo
+        if (ammo <= 0 || ammo > maxAmmo)
+        {
             return;
+        }
         ammo--;
 
         if (audio)
+        {
             PlaySound(audio->shoot);
+        }
 
         b2BodyDef bodyDef = b2DefaultBodyDef();
         bodyDef.type = b2_dynamicBody;
@@ -282,7 +325,8 @@ public:
         float shootSpeed = 60.0f;
 
         b2Vec2 shootVel = {c * shootSpeed, s * shootSpeed};
-        b2Vec2 finalVel = {carVel.x + shootVel.x, carVel.y + shootVel.y}; // Calcular la velocidad final
+        b2Vec2 finalVel = {carVel.x + shootVel.x,
+                           carVel.y + shootVel.y}; // Calcular la velocidad final
         bodyDef.linearVelocity = finalVel;
 
         b2BodyId mBody = b2CreateBody(worldRef, &bodyDef);
@@ -342,14 +386,19 @@ public:
                         dy /= length;
                     }
                     float impulsePower = 800.0f * (1.0f - (dist / 10.0f));
-                    b2Body_ApplyLinearImpulseToCenter(chassisId, (b2Vec2){dx * impulsePower, dy * impulsePower}, true);
+                    b2Body_ApplyLinearImpulseToCenter(
+                        chassisId, (b2Vec2){dx * impulsePower, dy * impulsePower}, true);
                 }
                 Vector2 explosionPos = {pos.x * scale, pos.y * scale};
                 if (explosionMgr)
+                {
                     explosionMgr->AddMissileExplosion(explosionPos, explosionMissileTex);
+                }
 
                 if (audio)
+                {
                     PlaySound(audio->missileExplosion);
+                }
 
                 b2DestroyBody(it->bodyId);
                 it = activeMissiles.erase(it);
@@ -369,18 +418,36 @@ public:
         return activeMissiles;
     }
 
-    int GetMaxAmmo() { return maxAmmo; }
+    int GetMaxAmmo()
+    {
+        return maxAmmo;
+    }
 
     // Getter para obtener el ID del cuerpo (para que los enemigos te apunten)
-    b2BodyId GetBodyId() { return chassisId; }
+    b2BodyId GetBodyId()
+    {
+        return chassisId;
+    }
 
     // --- GETTERS PARA ESCUDO ---
-    bool IsShieldActive() { return shieldActive; }
-    bool IsParryActive() { return shieldActive && (parryWindow > 0.0f); }
+    bool IsShieldActive()
+    {
+        return shieldActive;
+    }
+    bool IsParryActive()
+    {
+        return shieldActive && (parryWindow > 0.0f);
+    }
 
     // En la sección public de carb.h
-    float GetParryWindow() { return parryWindow; }
-    float GetShieldTimer() { return shieldTimer; }
+    float GetParryWindow()
+    {
+        return parryWindow;
+    }
+    float GetShieldTimer()
+    {
+        return shieldTimer;
+    }
 
     // Método para recargar instantáneamente (al hacer parry exitoso)
     void InstantRechargeShield()
@@ -390,24 +457,46 @@ public:
         shieldCooldown = 0.0f;
         fuel = maxFuel;
         if (audio)
+        {
             PlaySound(audio->parrySuccess);
+        }
     }
 
     // Getter para colision
-    b2BodyId GetRoofSensorId() { return roofSensorId; }
+    b2BodyId GetRoofSensorId()
+    {
+        return roofSensorId;
+    }
 
-    bool IsRoofTouchingGround() { return roofTouchingGround; }
-    void SetRoofTouching(bool touching) { roofTouchingGround = touching; }
+    bool IsRoofTouchingGround()
+    {
+        return roofTouchingGround;
+    }
+    void SetRoofTouching(bool touching)
+    {
+        roofTouchingGround = touching;
+    }
 
     // getter stats parry
-    int GetParrysCount() const { return parrysCount; }
-    void AddParry() { parrysCount++; }
-    void ResetParryCount() { parrysCount = 0; }
+    int GetParrysCount() const
+    {
+        return parrysCount;
+    }
+    void AddParry()
+    {
+        parrysCount++;
+    }
+    void ResetParryCount()
+    {
+        parrysCount = 0;
+    }
 
     void StopMovement()
     {
         if (!b2Body_IsValid(chassisId))
+        {
             return;
+        }
 
         // Detener todo el movimiento físico
         b2Body_SetLinearVelocity(chassisId, {0, 0});
@@ -428,7 +517,9 @@ public:
         fuel -= fuelConsumption;
 
         if (fuel < 0.0f)
+        {
             fuel = 0.0f;
+        }
 
         float motorSpeed = 0.0f;
         float maxSpeed = 60.0f;
@@ -438,7 +529,7 @@ public:
         // Actualizar quiz
         UpdateQuiz(GetFrameTime());
 
-        if (IsKeyDown(KEY_D))
+        if (GameKeyDown(KEY_D))
         {
             if (fuel > 0)
             {
@@ -446,7 +537,7 @@ public:
                 accelerating = true;
             }
         }
-        else if (IsKeyDown(KEY_A))
+        else if (GameKeyDown(KEY_A))
         {
             if (fuel > 0)
             {
@@ -483,14 +574,18 @@ public:
         if (audio && !isDead)
         {
             if (!IsSoundPlaying(audio->engine))
+            {
                 PlaySound(audio->engine);
+            }
             // Cambiar pitch según velocidad
             b2Vec2 vel = b2Body_GetLinearVelocity(chassisId);
             float speed = b2Length(vel);
 
             float pitch = 0.5f + (speed / 60.0f); // 0.5 base, sube con velocidad
             if (pitch > 2.0f)
+            {
                 pitch = 2.0f;
+            }
             SetSoundPitch(audio->engine, pitch);
         }
         else if (audio && isDead)
@@ -498,7 +593,7 @@ public:
             StopSound(audio->engine);
         }
 
-        if (IsKeyPressed(KEY_SPACE))
+        if (GameKeyPressed(KEY_SPACE))
         {
             Shoot();
         }
@@ -530,25 +625,36 @@ public:
 
         // 2. Activación
         // Si presionas SHIFT, no está activo y no hay cooldown -> ACTIVAR
-        if (IsKeyPressed(KEY_LEFT_SHIFT) && !shieldActive && shieldCooldown <= 0.0f)
+        if (GameKeyPressed(KEY_LEFT_SHIFT) && !shieldActive && shieldCooldown <= 0.0f)
         {
             shieldActive = true;
             shieldTimer = 3.0f;  // Dura 3 segundos
-            parryWindow = 0.40f; // Parry disponible los primeros 0.75s
+            parryWindow = 0.40f; // Parry disponible los primeros 0.40s
 
             if (audio)
+            {
                 PlaySound(audio->shieldOn);
+            }
         }
 
         GetPosition();
     }
 
     // Getters de vidas
-    int GetLives() { return lives; }
-    int GetMaxLives() { return maxLives; }
+    int GetLives()
+    {
+        return lives;
+    }
+    int GetMaxLives()
+    {
+        return maxLives;
+    }
 
     // Getters de invulnerabilidad
-    bool IsInvulnerable() { return isInvulnerable; }
+    bool IsInvulnerable()
+    {
+        return isInvulnerable;
+    }
 
     // Activar invulnerabilidad
     void SetInvulnerable(float duration)
@@ -631,27 +737,37 @@ public:
             }
         }
 
-        // Generar 3 opciones (una correcta, dos incorrectas)
-        currentQuestion.options[GetRandomValue(0, 2)] = currentQuestion.correctAnswer;
-
-        for (int i = 0; i < 3; i++)
+        // RF07: cero es una respuesta valida, no una marca de casilla vacia.
+        const int correctIndex = GetRandomValue(0, 2);
+        for (int i = 0; i < 3; ++i)
         {
-            if (currentQuestion.options[i] == 0)
+            if (i == correctIndex)
             {
-                // Opción incorrecta
-                int wrongAnswer = currentQuestion.correctAnswer + GetRandomValue(-10, 10);
-                if (wrongAnswer == currentQuestion.correctAnswer)
-                    wrongAnswer += 5;
-                currentQuestion.options[i] = wrongAnswer;
+                currentQuestion.options[i] = currentQuestion.correctAnswer;
+                continue;
             }
+            int candidate = 0;
+            bool repeated = false;
+            do
+            {
+                candidate = currentQuestion.correctAnswer + GetRandomValue(-10, 10);
+                repeated = candidate == currentQuestion.correctAnswer;
+                for (int j = 0; j < i; ++j)
+                {
+                    repeated = repeated || currentQuestion.options[j] == candidate;
+                }
+            } while (repeated);
+            currentQuestion.options[i] = candidate;
         }
     }
 
     // Responder pregunta (índice 0, 1 o 2)
     void AnswerQuestion(int optionIndex)
     {
-        if (!isQuizActive)
+        if (!isQuizActive || optionIndex < 0 || optionIndex >= 3)
+        {
             return;
+        }
 
         if (currentQuestion.options[optionIndex] == currentQuestion.correctAnswer)
         {
@@ -659,13 +775,17 @@ public:
             lives = (lives < maxLives) ? lives + 1 : maxLives;
 
             if (audio)
+            {
                 PlaySound(audio->recover);
+            }
         }
         else
         {
 
             if (audio)
+            {
                 PlaySound(audio->wrong);
+            }
         }
 
         isQuizActive = false;
@@ -676,7 +796,9 @@ public:
     void LoseLife()
     {
         if (isDead || isInvulnerable)
+        {
             return;
+        }
 
         lives--;
         SetInvulnerable(2.0f);
@@ -706,14 +828,22 @@ public:
         return isQuizActive;
     }
 
-    float GetQuizTimer() { return quizTimer; }
-    MathQuestion GetCurrentQuestion() { return currentQuestion; }
+    float GetQuizTimer()
+    {
+        return quizTimer;
+    }
+    MathQuestion GetCurrentQuestion()
+    {
+        return currentQuestion;
+    }
 
     // Actualizar quiz
     void UpdateQuiz(float dt)
     {
         if (!isQuizActive)
+        {
             return;
+        }
 
         quizTimer -= dt;
         if (quizTimer <= 0.0f)
@@ -722,11 +852,12 @@ public:
         }
     }
 
-    // Reemplaza tu CheckHeadCrash con esto:
     void CheckHeadCrash(float groundHeight)
     {
         if (isDead)
+        {
             return;
+        }
 
         // Obtenemos la posición Y del sensor del techo
         b2Vec2 roofPos = b2Body_GetPosition(roofSensorId);
@@ -785,11 +916,7 @@ public:
             float angle = atan2f(vel.y, vel.x) * RAD2DEG;
 
             Rectangle source = {0, 0, (float)missileTex.width, (float)missileTex.height};
-            Rectangle dest = {
-                mpos.x * scale,
-                mpos.y * scale,
-                45.0f,
-                15.0f};
+            Rectangle dest = {mpos.x * scale, mpos.y * scale, 45.0f, 15.0f};
 
             // Ajusta el origen
             Vector2 origin = {22.5f, 7.5f};
@@ -832,7 +959,8 @@ public:
             DrawCircleV(spos, radius, mainColor);
 
             // Capa B: Gradiente interno (brillo central)
-            DrawCircleGradient(spos.x, spos.y, radius * 0.8f, Fade(rimColor, 0.0f), Fade(mainColor, 0.2f));
+            DrawCircleGradient(spos.x, spos.y, radius * 0.8f, Fade(rimColor, 0.0f),
+                               Fade(mainColor, 0.2f));
 
             // Capa C: Borde exterior grueso (halo de energía)
             DrawRing(spos, radius, radius + 4.0f, 0, 360, 0, Fade(rimColor, 0.4f));
@@ -841,8 +969,10 @@ public:
             DrawRing(spos, radius, radius + 1.5f, 0, 360, 0, rimColor);
 
             // Capa E: Anillo interior decorativo (tecnológico)
-            DrawRing(spos, radius - 15.0f, radius - 13.0f, 0 + (time * 50), 120 + (time * 50), 0, Fade(rimColor, 0.5f));
-            DrawRing(spos, radius - 15.0f, radius - 13.0f, 180 + (time * 50), 300 + (time * 50), 0, Fade(rimColor, 0.5f));
+            DrawRing(spos, radius - 15.0f, radius - 13.0f, 0 + (time * 50), 120 + (time * 50), 0,
+                     Fade(rimColor, 0.5f));
+            DrawRing(spos, radius - 15.0f, radius - 13.0f, 180 + (time * 50), 300 + (time * 50), 0,
+                     Fade(rimColor, 0.5f));
 
             // (El texto de PARRY ha sido eliminado)
         }
@@ -872,7 +1002,9 @@ public:
             float maxTime = 2.0f; // Ajusta si tu tiempo máximo es diferente
             float progress = invulnerabilityTimer / maxTime;
             if (progress > 1.0f)
+            {
                 progress = 1.0f;
+            }
 
             // 1. Color base: Verde Matrix con intensidad variable
             // Parpadea más rápido cuando se está acabando
@@ -894,7 +1026,8 @@ public:
 
                 if (currentRadius > 40.0f) // Solo dibujar si es más grande que el coche
                 {
-                    DrawRing(spos, currentRadius, currentRadius + 2.0f, 0, 360, 0, Fade(matrixGreen, waveAlpha * 0.6f));
+                    DrawRing(spos, currentRadius, currentRadius + 2.0f, 0, 360, 0,
+                             Fade(matrixGreen, waveAlpha * 0.6f));
                 }
             }
 
@@ -908,7 +1041,8 @@ public:
             {
                 float startAngle = rotSpeed + (i * 120);
                 float endAngle = startAngle + 60;
-                DrawRing(spos, hexRadius, hexRadius + 3.0f, startAngle, endAngle, 6, Fade(matrixGreen, 0.8f));
+                DrawRing(spos, hexRadius, hexRadius + 3.0f, startAngle, endAngle, 6,
+                         Fade(matrixGreen, 0.8f));
             }
 
             // 4. Brillo intenso sobre el coche (Flash cuando te golpean)
@@ -933,8 +1067,10 @@ private:
         float anchorX = cPos.x + (offX_m * c - offY_m * s);
         float anchorY = cPos.y + (offX_m * s + offY_m * c);
 
-        DrawLineEx((Vector2){anchorX * scale, anchorY * scale}, (Vector2){wPos.x * scale, wPos.y * scale}, 4.0f, DARKGRAY);
-        DrawLineEx((Vector2){anchorX * scale, anchorY * scale}, (Vector2){wPos.x * scale, wPos.y * scale}, 2.0f, YELLOW);
+        DrawLineEx((Vector2){anchorX * scale, anchorY * scale},
+                   (Vector2){wPos.x * scale, wPos.y * scale}, 4.0f, DARKGRAY);
+        DrawLineEx((Vector2){anchorX * scale, anchorY * scale},
+                   (Vector2){wPos.x * scale, wPos.y * scale}, 2.0f, YELLOW);
     }
 
     void DrawWheel(b2BodyId wheelId, Texture2D wheelTex)

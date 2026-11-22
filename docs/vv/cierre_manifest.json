@@ -1,0 +1,17 @@
+{
+  "requirements": 23,
+  "a11_cases_passed": 17,
+  "normal_checks": 46,
+  "error_checks": 47,
+  "reported_by_user": [
+    "RNF01",
+    "RNF03"
+  ],
+  "resources_ownership": "declaracion del responsable",
+  "hour_repeated": false,
+  "stats_sha256": "c5bbd40200ffc8f5289bc3fc3937af5c80517fc7f2667e860f8de57b8b0d55d1",
+  "sources": {
+    "main.cpp": "c40310484726b0303e45f7030b202f9c2cbc1dc3e6c6b5058e045b0dd0cd0bf6",
+    "enemies.h": "75bfcc96e8686c7d7fe06eb03ef60febf6bbb9a4e53be2fbfd5aa73f08375163"
+  }
+}
