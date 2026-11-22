@@ -1,0 +1,208 @@
+PASS P01: 20000 preguntas, 4 operaciones, cero, negativos y opciones unicas
+PASS P02: indices invalidos y recompensa unica con maximo de 5 vidas
+PASS P03: respuesta incorrecta y expiracion no recuperan vidas
+PASS P04: limites de municion, consumo de disparo y entradas de combustible
+PASS P05: guardar, reemplazar y cargar formato versionado; record no disminuye
+PASS P06: archivo legado de 12 bytes y migracion al guardar
+PASS P07: archivos truncados, NaN, negativos y cabecera invalida rechazados
+PASS P08: escritura fallida, desbordamiento e inicio sin archivo
+RESULTADO: 8 grupos aprobados; codigo de salida 0
+INFO: Initializing raylib 5.5
+INFO: Platform backend: DESKTOP (GLFW)
+INFO: Supported raylib modules:
+INFO:     > rcore:..... loaded (mandatory)
+INFO:     > rlgl:...... loaded (mandatory)
+INFO:     > rshapes:... loaded (optional)
+INFO:     > rtextures:. loaded (optional)
+INFO:     > rtext:..... loaded (optional)
+INFO:     > rmodels:... loaded (optional)
+INFO:     > raudio:.... loaded (optional)
+INFO: DISPLAY: Device initialized successfully
+INFO:     > Display size: 1920 x 1080
+INFO:     > Screen size:  1280 x 720
+INFO:     > Render size:  1280 x 720
+INFO:     > Viewport offsets: 0, 0
+INFO: GLAD: OpenGL extensions loaded successfully
+INFO: GL: Supported extensions count: 245
+INFO: GL: OpenGL device information:
+INFO:     > Vendor:   Intel
+INFO:     > Renderer: Intel(R) Iris(R) Xe Graphics
+INFO:     > Version:  3.3.0 - Build 30.0.101.1692
+INFO:     > GLSL:     3.30 - Build 30.0.101.1692
+INFO: GL: VAO extension detected, VAO functions loaded successfully
+INFO: GL: NPOT textures extension detected, full NPOT textures supported
+INFO: GL: DXT compressed textures supported
+INFO: GL: ETC2/EAC compressed textures supported
+INFO: PLATFORM: DESKTOP (GLFW - Win32): Initialized successfully
+INFO: TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 1] Default texture loaded successfully
+INFO: SHADER: [ID 1] Vertex shader compiled successfully
+INFO: SHADER: [ID 2] Fragment shader compiled successfully
+INFO: SHADER: [ID 3] Program shader loaded successfully
+INFO: SHADER: [ID 3] Default shader loaded successfully
+INFO: RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+INFO: RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+INFO: RLGL: Default OpenGL state initialized successfully
+INFO: TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+INFO: FONT: Default font loaded successfully (224 glyphs)
+INFO: SYSTEM: Working Directory: VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto
+INFO: AUDIO: Device initialized successfully
+INFO:     > Backend:       miniaudio | WASAPI
+INFO:     > Format:        32-bit IEEE Floating Point -> 32-bit IEEE Floating Point
+INFO:     > Channels:      2 -> 2
+INFO:     > Sample rate:   48000 -> 48000
+INFO:     > Periods size:  1440
+INFO: TIMER: Target time per frame: 16.667 milliseconds
+INFO: STREAM: Initialized successfully (44100 Hz, 16 bit, Stereo)
+INFO: FILEIO: [assets/audio/menu_theme.ogg] Music file loaded successfully
+INFO:     > Sample rate:   44100 Hz
+INFO:     > Sample size:   16 bits
+INFO:     > Channels:      2 (Stereo)
+INFO:     > Total frames:  7621539
+INFO: STREAM: Initialized successfully (48000 Hz, 16 bit, Stereo)
+INFO: FILEIO: [assets/audio/gameplay_theme.ogg] Music file loaded successfully
+INFO:     > Sample rate:   48000 Hz
+INFO:     > Sample size:   16 bits
+INFO:     > Channels:      2 (Stereo)
+INFO:     > Total frames:  12559104
+INFO: FILEIO: [assets/audio/car_loop.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/missile.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/shield.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/parry.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/car_explode.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/low_fuel.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (96000 Hz, 16 bit, 1 channels)
+INFO: FILEIO: [assets/audio/damage.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/repair.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/wrong.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 1 channels)
+INFO: FILEIO: [assets/audio/heli_loop.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/heli_explode.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/missile_explode.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/mine.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/pickup.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/ui_move.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/audio/ui_select.wav] File loaded successfully
+INFO: WAVE: Data loaded successfully (44100 Hz, 16 bit, 2 channels)
+INFO: FILEIO: [assets/car/chasis_truck.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1030x354 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 3] Texture loaded successfully (1030x354 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/car/wheel_truck.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (176x170 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 4] Texture loaded successfully (176x170 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/helifull.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (3200x2400 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 5] Texture loaded successfully (3200x2400 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/missile.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (281x79 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 6] Texture loaded successfully (281x79 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/fuel.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1024x1024 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 7] Texture loaded successfully (1024x1024 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/mine.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (16x4 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 8] Texture loaded successfully (16x4 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/ammo.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (719x860 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 9] Texture loaded successfully (719x860 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/menuB.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1024x904 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 10] Texture loaded successfully (1024x904 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/menuB.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1024x904 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 11] Texture loaded successfully (1024x904 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/kit.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (980x980 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 12] Texture loaded successfully (980x980 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/effects/explosionC.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (3024x504 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 13] Texture loaded successfully (3024x504 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/effects/explosionH.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1645x1920 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 14] Texture loaded successfully (1645x1920 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/effects/explosionM.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1000x720 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 15] Texture loaded successfully (1000x720 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/effects/explosionMi.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (9600x3840 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 16] Texture loaded successfully (9600x3840 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/playoff.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (242x93 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 17] Texture loaded successfully (242x93 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/playon.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (242x93 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 18] Texture loaded successfully (242x93 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/statsof.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (248x94 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 19] Texture loaded successfully (248x94 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/statson.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (247x94 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 20] Texture loaded successfully (247x94 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/exitoff.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (243x94 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 21] Texture loaded successfully (243x94 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/background/exiton.jpg] File loaded successfully
+INFO: IMAGE: Data loaded successfully (245x95 | R8G8B8 | 1 mipmaps)
+INFO: TEXTURE: [ID 22] Texture loaded successfully (245x95 | R8G8B8 | 1 mipmaps)
+INFO: FILEIO: [assets/misc/LogoR.png] File loaded successfully
+INFO: IMAGE: Data loaded successfully (1024x747 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 23] Texture loaded successfully (1024x747 | R8G8B8A8 | 1 mipmaps)
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/menu_real.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/menu_real.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/menu_real.png] Screenshot taken successfully
+PASS UI frame=30 estado=MENU captura=menu_real.png
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/partida_real.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/partida_real.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/partida_real.png] Screenshot taken successfully
+PASS UI frame=100 estado=PLAYING captura=partida_real.png
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/pausa_real.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/pausa_real.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/pausa_real.png] Screenshot taken successfully
+PASS UI frame=160 estado=PAUSED captura=pausa_real.png
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/reanudacion_real.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/reanudacion_real.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/reanudacion_real.png] Screenshot taken successfully
+PASS UI frame=220 estado=PLAYING captura=reanudacion_real.png
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/estadisticas_real.png] File saved successfully
+INFO: FILEIO: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/estadisticas_real.png] Image exported successfully
+INFO: SYSTEM: [VV\02_VV_MATHMAX\output\Actividad_10_Mathmax_Reloaded\proyecto/estadisticas_real.png] Screenshot taken successfully
+PASS UI frame=350 estado=STATS captura=estadisticas_real.png
+INFO: TEXTURE: [ID 3] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 4] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 5] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 6] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 7] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 8] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 9] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 12] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 11] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 10] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 13] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 14] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 15] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 16] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 17] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 18] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 19] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 20] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 21] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 22] Unloaded texture data from VRAM (GPU)
+INFO: TEXTURE: [ID 23] Unloaded texture data from VRAM (GPU)
+INFO: STREAM: Unloaded audio stream data from RAM
+INFO: STREAM: Unloaded audio stream data from RAM
+INFO: AUDIO: Device closed successfully
+
+COMPILACION ORIGINAL, REGRESION E INTEGRACION: salida 0

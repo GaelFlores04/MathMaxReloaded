@@ -1,7 +1,17 @@
+/*
+ * Proyecto: MATHMAX - RELOADED
+ * Archivo: effects.h
+ * Proposito: actualizar y dibujar explosiones con spritesheets.
+ * Requisitos: RIE01, RIE02.
+ * Base POO: Gael Flores Canedo / Israel Gomez Ahumada.
+ * Adaptacion V&V: Gael Flores / Jorge Roel Vasquez; asistencia de Codex.
+ * Revision: 2026-11-09
+ */
 #pragma once
-#include <raylib.h>
-#include <vector>
 #include <algorithm>
+#include <vector>
+
+#include <raylib.h>
 
 struct AnimatedExplosion
 {
@@ -16,10 +26,12 @@ struct AnimatedExplosion
     int frameWidth;
     int frameHeight;
 
-    AnimatedExplosion(Vector2 pos, Texture2D tex, int frames, int fpr, int fw, int fh, float duration, float s = 1.0f)
-        : position(pos), texture(tex), totalFrames(frames), framesPerRow(fpr), 
-          currentFrame(0), frameDuration(duration), frameTimer(0.0f), scale(s),
-          frameWidth(fw), frameHeight(fh) {}
+    AnimatedExplosion(Vector2 pos, Texture2D tex, int frames, int fpr, int fw, int fh,
+                      float duration, float s = 1.0f)
+        : position(pos), texture(tex), totalFrames(frames), framesPerRow(fpr), currentFrame(0),
+          frameDuration(duration), frameTimer(0.0f), scale(s), frameWidth(fw), frameHeight(fh)
+    {
+    }
 
     void Update(float dt)
     {
@@ -39,29 +51,22 @@ struct AnimatedExplosion
     void Draw()
     {
         if (!IsAlive() || texture.id == 0)
+        {
             return;
+        }
 
         // --- CÁLCULO DE FRAME EXACTO ---
         int frameRow = currentFrame / framesPerRow;
         int frameCol = currentFrame % framesPerRow;
 
-        Rectangle sourceRec = {
-            (float)(frameCol * frameWidth),
-            (float)(frameRow * frameHeight),
-            (float)frameWidth,
-            (float)frameHeight
-        };
+        Rectangle sourceRec = {(float)(frameCol * frameWidth), (float)(frameRow * frameHeight),
+                               (float)frameWidth, (float)frameHeight};
 
         // --- TAMAÑO EN PANTALLA CON ESCALA RELATIVA ---
         float visualWidth = frameWidth * scale;
         float visualHeight = frameHeight * scale;
 
-        Rectangle destRec = {
-            position.x,
-            position.y,
-            visualWidth,
-            visualHeight
-        };
+        Rectangle destRec = {position.x, position.y, visualWidth, visualHeight};
 
         Vector2 origin = {visualWidth / 2.0f, visualHeight / 2.0f};
 
@@ -82,7 +87,8 @@ public:
     {
         explosions.push_back(AnimatedExplosion(pos, tex, 6, 6, 504, 504, 0.1f, 1.8f));
     }
-    //  explosions.push_back(AnimatedExplosion(pos, tex,(frames), (frames horizontales), (ancho), (alto), (duracion de frame), (tamano)));
+    //  explosions.push_back(AnimatedExplosion(pos, tex,(frames), (frames horizontales), (ancho),
+    //  (alto), (duracion de frame), (tamano)));
 
     // --- EXPLOSIÓN DEL HELICÓPTERO (ExplosionH.png) ---
     // Imagen: 1645x1920 (20 frames en 5 columnas x 4 filas)
@@ -111,18 +117,21 @@ public:
     void Update(float dt)
     {
         for (auto &exp : explosions)
+        {
             exp.Update(dt);
+        }
 
         // Eliminar explosiones que terminaron
-        explosions.erase(
-            std::remove_if(explosions.begin(), explosions.end(),
-                [](const AnimatedExplosion &e) { return !e.IsAlive(); }),
-            explosions.end());
+        explosions.erase(std::remove_if(explosions.begin(), explosions.end(),
+                                        [](const AnimatedExplosion &e) { return !e.IsAlive(); }),
+                         explosions.end());
     }
 
     void Draw()
     {
         for (auto &exp : explosions)
+        {
             exp.Draw();
+        }
     }
 };

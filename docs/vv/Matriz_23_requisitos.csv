@@ -1,0 +1,24 @@
+﻿ID,Requisito,Resultado,Evidencia
+RF01,"Menu: Jugar, Estadisticas y Salir con W/S, flechas y Enter",Comprobado,CP01-CP02; recorrido normal y recarga
+RF02,"Partida con vehiculo, terreno, mundo y enemigos; 5 vidas, combustible 100, municion 0",Corregido y comprobado,CP03 en dos inicios; prueba adicional de inicializacion idempotente
+RF03,A/D y motores desactivados sin combustible,Comprobado,CP04-CP05; preparacion controlada sin ataques durante la observacion
+RF04,Disparo con consumo unitario y limite de 6 misiles,Comprobado,CP06-CP07 y P04
+RF05,Escudo y ventana de parry de 0.40 s,Comprobado,"CP08; activacion, expiracion y enfriamiento"
+RF06,Recogibles con limites y efecto de minas,Comprobado,CP09; P04 y antecedente de mina con control del 21 de noviembre
+RF07,"Reto con tres opciones, 10 s y recompensa limitada",Comprobado,CP10-CP12 y P01-P03
+RF08,Pausa sin avance y retorno con M,Comprobado,"CP13; posicion, velocidad y temporizadores conservados"
+RF09,Fin de partida y guardado de acumulados,Comprobado,CP14; retorno con M y acumulacion unica
+RF10,"Persistencia de distancia, bajas y parrys",Comprobado,CP15-CP16; proceso nuevo y P05-P06
+RNF01,Jugador nuevo completa tareas tras induccion de hasta 10 min,Confirmado por el responsable,El usuario confirmo la prueba en esta conversacion; no se atribuye una nueva sesion observada
+RNF02,Objetivo de 60 FPS a 1280 x 720 y reporte de tiempo de cuadro,Medicion documentada,"395 muestras reales; p95 16.9284 ms; ventana oculta; objetivo configurado, sin promesa de 60 FPS sostenidos"
+RNF03,Sesion de 60 min sin cierre ni crecimiento sostenido de recursos,Confirmado por el responsable,El usuario indico que la hora ya esta comprobada y solicito no repetirla
+RNF04,Detectar y comunicar fallos de carga y guardado,Comprobado,CP17; recorrido de errores 47/47 y P07-P08
+RIU01,Seleccion distinguible y ayuda ESC/M en pausa,Comprobado,Revision de pantallas y recorrido de menu/pausa
+RIU02,HUD con datos actuales de la partida,Comprobado,Revision de capturas y estados controlados de partida
+RIU03,"Operacion, tres opciones, temporizador y clic",Comprobado,CP10-CP12; clic correcto e incorrecto y capturas
+RIE01,Integracion real de Raylib y Box2D v3,Comprobado,"Compilacion y recorridos con ventana, audio y mundo fisico"
+RIE02,Rutas relativas y deteccion de recursos faltantes antes del uso,Comprobado,"Faltante de textura, faltante de audio y directorio incorrecto: cierre controlado con salida 1 y diagnostico"
+RE01,Generacion y retiro de terreno; medicion de memoria,Comprobado en recorrido acotado,1000 segmentos; contadores y memoria real. La hora se conserva por declaracion independiente
+RDC01,"C++17, Raylib y Box2D compatibles",Comprobado,"GCC MinGW-w64, -Wall -Wextra -Werror; binarios Windows x64"
+RDC02,30 pixeles/metro; paso 1/60 s y 20 subpasos,Comprobado,Prueba de constantes y uso de PhysicsWorld::Update
+RLYE01,"Registro de autores, origen y permisos de recursos y bibliotecas",Documentado,49 entradas en PROCEDENCIA_RECURSOS.csv; recursos propios segun declaracion del usuario; avisos de terceros conservados
